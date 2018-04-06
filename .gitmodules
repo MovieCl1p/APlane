@@ -1,3 +1,7 @@
 [submodule "Assets/Scripts/Core"]
 	path = Assets/Scripts/Core
 	url = https://github.com/MovieCl1p/Core.git
+[submodule "Assets/MaterialUI"]
+	path = Assets/MaterialUI
+	url = https://github.com/MovieCl1p/MaterialUI.git
+	branch = master
