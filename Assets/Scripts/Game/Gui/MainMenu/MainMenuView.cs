@@ -10,17 +10,25 @@ namespace Game.Gui.MainMenu
     {
         [SerializeField]
         private Button _playBtn;
+        
+        [SerializeField]
+        private Button _shopBtn;
 
         protected override void Start()
         {
             base.Start();
 
-            _playBtn.onClick.AddListener(OnPlayClick);
+            //_playBtn.onClick.AddListener(OnPlayClick);
         }
 
         private void OnPlayClick()
         {
             ViewManager.Instance.SetView(ViewNames.GameScreen);
+        }
+        
+        private void OnShopClick()
+        {
+            ViewManager.Instance.SetView(ViewNames.ShopScreen);
         }
 
         protected override void OnReleaseResources()

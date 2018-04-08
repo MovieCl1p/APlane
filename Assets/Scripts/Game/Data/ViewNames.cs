@@ -6,6 +6,7 @@ namespace Game.Data
         public const string SplashScreen    = "SplashScreen";
         public const string MainMenuScreen  = "MainMenuScreen";
         public const string GameScreen      = "GameScreen";
+        public const string ShopScreen      = "ShopScreen";
 
         public const string FinishView      = "FinishView";
         public const string PauseView       = "PauseView";
