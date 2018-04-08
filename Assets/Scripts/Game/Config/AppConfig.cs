@@ -1,6 +1,11 @@
 ﻿using Core.Binder;
 using Core.Dispatcher;
 using System;
+using Game.Factory;
+using Game.Model;
+using Game.Player.Control;
+using Game.Services;
+using Game.Services.Interfaces;
 
 namespace Game.Config
 {
@@ -16,19 +21,20 @@ namespace Game.Config
         private void BindInjections()
         {
             BindManager.Bind<IDispatcher>().To<Dispatcher>().ToSingleton();
-            //BindManager.Bind<IPlayerControl>().To<PlayerControl>().ToSingleton();
-            //BindManager.Bind<GameFactory>().ToSingleton();
+            
+            BindManager.Bind<IPlayerControl>().To<PlayerControl>().ToSingleton();
+            
+            BindManager.Bind<GameFactory>().ToSingleton();
         }
 
         private void BindModels()
         {
-            //BindManager.Bind<LevelSessionModel>().ToSingleton();
+            BindManager.Bind<LevelSessionModel>().ToSingleton();
         }
 
         private void BindServices()
         {
-            //BindManager.Bind<ILevelLoaderService>().To<LevelLoaderService>().ToSingleton();
-            //BindManager.Bind<ILevelService>().To<LevelService>().ToSingleton();
+            BindManager.Bind<IShipService>().To<ShipService>().ToSingleton();
         }
     }
 }

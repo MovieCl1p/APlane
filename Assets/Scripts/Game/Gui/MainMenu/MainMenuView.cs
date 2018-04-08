@@ -8,25 +8,34 @@ namespace Game.Gui.MainMenu
 {
     public class MainMenuView : BaseView
     {
-        [SerializeField]
-        private Button _playBtn;
+        [SerializeField] private Button PlayBtn;
+        [SerializeField] private Button ShipBtn;
+        [SerializeField] private Button OptionsBtn;
 
         protected override void Start()
         {
             base.Start();
-
-            _playBtn.onClick.AddListener(OnPlayClick);
+            
+            PlayBtn.onClick.AddListener(OnPLayClick);
+            OptionsBtn.onClick.AddListener(OnOptionsClick);
+            ShipBtn.onClick.AddListener(OnShip);
         }
 
-        private void OnPlayClick()
+        private void OnPLayClick()
         {
-            ViewManager.Instance.SetView(ViewNames.GameScreen);
+//            StartLevelCommand command = new StartLevelCommand();
+//            command.Execute();
         }
 
-        protected override void OnReleaseResources()
+        private void OnShip()
         {
-            _playBtn.onClick.RemoveListener(OnPlayClick);
-            base.OnReleaseResources();
+//            ViewManager.Instance.SetView(ViewNames.ShipView);
+            
+        }
+
+        private void OnOptionsClick()
+        {
+//            ViewManager.Instance.SetView(ViewNames.OptionsView);
         }
     }
 }
