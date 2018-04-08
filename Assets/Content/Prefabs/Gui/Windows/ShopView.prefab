@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 224316630054817484}
   - component: {fileID: 114162261532544096}
   m_Layer: 5
-  m_Name: ShipView
+  m_Name: ShopView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scheduledUpdate: 0
-  _item: {fileID: 114908473506189024, guid: d5a3532e469c4384abe1c3cb6ef9fef5, type: 2}
+  _item: {fileID: 0}
   _list: {fileID: 224947937495830240}
   _content: {fileID: 224768832119494008}
   _BackBtn: {fileID: 114210599878876866}

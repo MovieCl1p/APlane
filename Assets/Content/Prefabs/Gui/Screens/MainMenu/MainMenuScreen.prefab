@@ -469,7 +469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scheduledUpdate: 0
   _playBtn: {fileID: 114615117471398686}
-  _shopBtn: {fileID: 0}
+  _shopBtn: {fileID: 114494153677833214}
+  _optionsBtn: {fileID: 114661610650698170}
 --- !u!114 &114494153677833214
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,17 +8,17 @@ namespace Game.Gui.MainMenu
 {
     public class MainMenuView : BaseView
     {
-        [SerializeField] private Button PlayBtn;
-        [SerializeField] private Button ShipBtn;
-        [SerializeField] private Button OptionsBtn;
+        [SerializeField] private Button _playBtn;
+        [SerializeField] private Button _shopBtn;
+        [SerializeField] private Button _optionsBtn;
 
         protected override void Start()
         {
             base.Start();
             
-            PlayBtn.onClick.AddListener(OnPLayClick);
-            OptionsBtn.onClick.AddListener(OnOptionsClick);
-            ShipBtn.onClick.AddListener(OnShip);
+            _playBtn.onClick.AddListener(OnPLayClick);
+            _optionsBtn.onClick.AddListener(OnOptionsClick);
+            _shopBtn.onClick.AddListener(OnShip);
         }
 
         private void OnPLayClick()
