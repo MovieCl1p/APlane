@@ -113,7 +113,6 @@ namespace Game.Player
         public void Reset(Vector3 startPosition)
         {
             CachedTransform.position = startPosition;
-            _move.Reset();
             
             _active = false;
         }

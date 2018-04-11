@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Resources;
+using Core.ResourceManager;
 using Core.ViewManager;
+using Game.Commands;
+using Game.Config;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Data;
@@ -18,24 +22,36 @@ namespace Game.Gui.MainMenu
             
             _playBtn.onClick.AddListener(OnPLayClick);
             _optionsBtn.onClick.AddListener(OnOptionsClick);
-            _shopBtn.onClick.AddListener(OnShip);
+            _shopBtn.onClick.AddListener(OnShopClick);
+
+            ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
         }
 
         private void OnPLayClick()
         {
-//            StartLevelCommand command = new StartLevelCommand();
-//            command.Execute();
+            StartLevelCommand command = new StartLevelCommand();
+            command.Execute();
+            
+            CloseView();
         }
 
-        private void OnShip()
+        private void OnShopClick()
         {
-//            ViewManager.Instance.SetView(ViewNames.ShipView);
-            
+            ViewManager.Instance.SetView(ViewNames.ShopView);
         }
 
         private void OnOptionsClick()
         {
-//            ViewManager.Instance.SetView(ViewNames.OptionsView);
+            ViewManager.Instance.SetView(ViewNames.OptionsView);
+        }
+
+        protected override void OnReleaseResources()
+        {
+            _playBtn.onClick.RemoveListener(OnPLayClick);
+            _optionsBtn.onClick.RemoveListener(OnOptionsClick);
+            _shopBtn.onClick.RemoveListener(OnShopClick);
+            
+            base.OnReleaseResources();
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Core.Commands;
+using Core.Database;
 using Core.ViewManager;
 using Core.ViewManager.Data;
 using Game.Data;
+using Game.Model.Tables;
 
 namespace Game.Commands
 {
@@ -11,16 +13,25 @@ namespace Game.Commands
         {
             ViewManager.Instance.Init();
             RegisterViews();
+
+            CreateDatabase();
+        }
+
+        private void CreateDatabase()
+        {
+            
         }
 
         private void RegisterViews()
         {
             ViewManager.Instance.RegisterView(ViewNames.SplashScreen,   LayerNames.ScreenLayer);
             ViewManager.Instance.RegisterView(ViewNames.MainMenuScreen, LayerNames.ScreenLayer);
-            ViewManager.Instance.RegisterView(ViewNames.GameScreen,     LayerNames.ScreenLayer);
+            ViewManager.Instance.RegisterView(ViewNames.GameHudView,    LayerNames.ScreenLayer);
+            
+            ViewManager.Instance.RegisterView(ViewNames.GameView,      LayerNames.ThreeDLayer);
 
-            ViewManager.Instance.RegisterView(ViewNames.FinishView,     LayerNames.WindowLayer);
-            ViewManager.Instance.RegisterView(ViewNames.PauseView,      LayerNames.WindowLayer);
+            ViewManager.Instance.RegisterView(ViewNames.OptionsView,   LayerNames.WindowLayer);
+            ViewManager.Instance.RegisterView(ViewNames.ShopView,      LayerNames.WindowLayer);
         }
     }
 }

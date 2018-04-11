@@ -90,7 +90,7 @@ namespace Game.Pool
             IPoolable pooledObj = objectToSpawn.GetComponent<IPoolable>();
             if (pooledObj != null)
             {
-                pooledObj.OnSpawn();
+//                pooledObj.OnSpawn();
             }
 
             return objectToSpawn;

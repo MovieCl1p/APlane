@@ -13,9 +13,6 @@ namespace Game.Player
         [SerializeField]
         private float _moveVelocity = 40;
 
-        [SerializeField]
-        private float _rotateVelocity = 40;
-
         private IDispatcher _dispatcher;
         private IPlayerControl _control;
         private MovementComponent _move;
@@ -23,12 +20,17 @@ namespace Game.Player
         protected override void Awake()
         {
             base.Awake();
-
+            
             _dispatcher = BindManager.GetInstance<IDispatcher>();
             _control = BindManager.GetInstance<IPlayerControl>();
             _control.OnTouch += OnTouch;
         }
 
+        public void SetCamera(Camera playerCamera)
+        {
+            _move = new MovementComponent(CachedTransform, playerCamera);
+        }
+        
         protected override void Update()
         {
             base.Update();
@@ -43,15 +45,14 @@ namespace Game.Player
         {
             if (_move != null)
             {
-                //_move.RotatePlayer();
-                _move.Rotate(_rotateVelocity, Time.deltaTime);
+                _move.Rotate(Time.deltaTime);
             }
         }
-        
-        public void SetCamera(Camera camera)
+
+        protected override void OnReleaseResources()
         {
-            _camera = camera;
-            _move = new MovementComponent(transform, _camera);
+            _control.OnTouch -= OnTouch;
+            base.OnReleaseResources();
         }
     }
 }

@@ -14,39 +14,23 @@ namespace Game.Gui.OptionsView
 
         [SerializeField] private Button _soundVolume;
 
-        [SerializeField] private AudioSource _audioSource;
         
         protected override void Start()
         {
             base.Start();
 
-            _backBtn.onClick.AddListener(OnMainMenuClick);
-            _soundVolume.onClick.AddListener(OnSound);
+            _backBtn.onClick.AddListener(OnCloseClick);
         }
         
-        protected override void Update()
-        { 
-            base.Update();
-            
-        }
-
-        private void OnMainMenuClick()
+        private void OnCloseClick()
         {
             CloseView();
-            //ViewManager.Instance.SetView(ViewNames.MainMenuScreen);
         }
 
-        private void OnSound()
+        protected override void OnReleaseResources()
         {
-            if (_audioSource.volume == 0)
-            {
-                _audioSource.volume = 1;
-            }
-            else
-            {
-                _audioSource.volume = 0;
-            }
-            
+            _backBtn.onClick.RemoveListener(OnCloseClick);
+            base.OnReleaseResources();
         }
     }
 }

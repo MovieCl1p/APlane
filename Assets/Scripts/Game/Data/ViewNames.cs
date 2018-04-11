@@ -5,10 +5,13 @@ namespace Game.Data
     {
         public const string SplashScreen    = "SplashScreen";
         public const string MainMenuScreen  = "MainMenuScreen";
-        public const string GameScreen      = "GameScreen";
-        public const string ShopScreen      = "ShopScreen";
-
-        public const string FinishView      = "FinishView";
+        public const string GameHudView  = "GameHudView";
+        
+        public const string GameView      = "GameView";
+        
+        public const string ShopView      = "ShopView";
+        public const string OptionsView      = "OptionsView";
         public const string PauseView       = "PauseView";
+        public const string FinishView       = "FinishView";
     }
 }

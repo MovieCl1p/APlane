@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Name: UIConfig
   m_EditorClassIdentifier: UnityEngine.CoreModule:UnityEngine:ScriptableObject
   _views:
-  - Id: GameScreen
+  - Id: GameHudView
+    View: {fileID: 114108704933846970, guid: 50f2b18738327f54aad585e21c981241, type: 2}
+  - Id: GameView
     View: {fileID: 114671641693628194, guid: 4b29e0e2d95811e43ad8acce8bbe8c7f, type: 2}
   - Id: MainMenuScreen
     View: {fileID: 114488209911666536, guid: 8e33997281f137948bf32823cf4d2ad6, type: 2}
   - Id: SplashScreen
     View: {fileID: 114903341283513278, guid: c7a06f7a514cea647b21e20dcdafa3d4, type: 2}
-  _pathToAssets: Assets/Content/Prefabs/Gui/Screens
+  - Id: FinishView
+    View: {fileID: 114528179781726422, guid: 3a3d2768592844741b031b435e9b08b0, type: 2}
+  - Id: OptionsView
+    View: {fileID: 114695078670023596, guid: 077f83f88ba7cee4c81eef0ea601f07d, type: 2}
+  - Id: PauseView
+    View: {fileID: 114312719954798674, guid: 73efc9833efdb214faa8dba2512af12b, type: 2}
+  - Id: ShopView
+    View: {fileID: 114162261532544096, guid: fe59b9d3149d5e749bdabd41cfdd8872, type: 2}
+  _pathToAssets: Assets/Content/Prefabs/Gui

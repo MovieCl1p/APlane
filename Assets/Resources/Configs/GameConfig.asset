@@ -11,3 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80654967d40d44029537f4db31b974de, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: UnityEngine.CoreModule:UnityEngine:ScriptableObject
+  RocketPrefab: {fileID: 114971930925467036, guid: d549747dff8c35147affde2bd10bdf81,
+    type: 2}
+  AsteroidPrefab: {fileID: 114583331202825684, guid: 4a8ebcc9367eb4e6ca85d1dfb7a31e65,
+    type: 2}
+  PlayerPrefab: {fileID: 114604984161758960, guid: 9ac05fefeee0ae54aa74d6bf32184db5,
+    type: 2}

@@ -1,70 +1,37 @@
-﻿using System;
-using Control;
-using Core.ResourceManager;
+﻿using Core.ResourceManager;
 using Game.Player;
 using UnityEngine;
 using Game.Asteroid;
+using Game.Config;
+using Game.Data;
+using Game.Rocket;
 
 namespace Game.Factory
 {
     public class GameFactory
     {
-        public PlayerController GetPlayer()
+        public PlayerController CreatePlayer()
         {
-//            if (!ResourcesCache.IsResourceLoaded("Player"))
-//            {
-//                ResourcesCache.SetupResourcesCache("Player", "Game/Player");
-//            }
-//
-//            var prefab = ResourcesCache.GetObject<PlayerController>("Player", "Player");
-//            PlayerController player = GameObject.Instantiate<PlayerController>(prefab);
-//
-//            return player;
+            GameConfig config = ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+            PlayerController result = GameObject.Instantiate<PlayerController>(config.PlayerPrefab);
 
-            return null;
+            return result;
         }
         
-        public RocketController GetRocket()
+        public RocketController CreateRocket()
         {
-//            if (!ResourcesCache.IsResourceLoaded("Rocket"))
-//            {
-//                ResourcesCache.SetupResourcesCache("Rocket", "Game/Rocket");
-//            }
-//
-//            var prefab = ResourcesCache.GetObject<RocketController>("Rocket", "Rocket");
-//            RocketController rocket = GameObject.Instantiate<RocketController>(prefab, GetRocketPosition(), Quaternion.identity);
+            GameConfig config = ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+            RocketController result = GameObject.Instantiate<RocketController>(config.RocketPrefab);
 
-//            return rocket;
-
-            return null;
+            return result;
         }
 
-        public AsteroidController GetAsteroid()
+        public AsteroidController CreateAsteroid()
         {
-//            if (!ResourcesCache.IsResourceLoaded("Asteroid 1"))
-//            {
-//                ResourcesCache.SetupResourcesCache("Asteroid 1", "Game/Asteroid");
-//            }
-//
-//            var prefab = ResourcesCache.GetObject<AsteroidController>("Asteroid 1", "Asteroid 1");
-//            AsteroidController rocket = GameObject.Instantiate<AsteroidController>(prefab, GetRocketPosition(), Quaternion.identity);
-//
-//            return rocket;
+            GameConfig config = ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+            AsteroidController result = GameObject.Instantiate<AsteroidController>(config.AsteroidPrefab);
 
-            return null;
-        }
-
-        public Vector3 GetRocketPosition()
-        {
-            var dx = Screen.width + 20;
-            var dy = Screen.height + 20;
-
-            var rx = UnityEngine.Random.Range(dx, dx);
-            var ry = UnityEngine.Random.Range(dy, dy);
-
-            Vector3 pos = new Vector3(Screen.width, Screen.height, 0);
-
-            return pos;
+            return result;
         }
     }
 }

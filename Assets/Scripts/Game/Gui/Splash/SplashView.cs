@@ -17,12 +17,14 @@ namespace Game.Gui.Splash
         protected override void Start()
         {
             base.Start();
-            ScheduleUpdate(2, false);
-
-            _logo.DOFade(1, 1);
-            _bg.DOFade(1, 1);
+//            ScheduleUpdate(2, false);
+//
+//            _logo.DOFade(1, 1);
+//            _bg.DOFade(1, 1);
+//            
+//            _logo.transform.DOScale(1, 1);
             
-            _logo.transform.DOScale(1, 1);
+            ViewManager.Instance.SetView(ViewNames.MainMenuScreen);
         }
 
         protected override void OnScheduledUpdate()
