@@ -9,9 +9,7 @@ namespace Game.Commands
         public void Execute()
         {
             ViewManager.Instance.SetView(ViewNames.GameView);
-            
-            
-            
+            ViewManager.Instance.SetView(ViewNames.GameHudView);
         }
     }
 }

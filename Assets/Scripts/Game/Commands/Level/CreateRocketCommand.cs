@@ -38,9 +38,12 @@ namespace Game.Commands.Level
         private void CreateRockets()
         {
             GameFactory factory = BindManager.GetInstance<GameFactory>();
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 5; i++)
             {
                 RocketController rocket = factory.CreateRocket();
+                Vector3 dir = (Random.insideUnitSphere * 50);
+                dir.z = 0;
+                rocket.CachedTransform.position = _player.position + dir;
                 rocket.SetTarget(_player);
             }
         }
