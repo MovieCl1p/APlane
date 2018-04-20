@@ -341,7 +341,6 @@ MonoBehaviour:
   _scheduledUpdate: 0
   _backBtn: {fileID: 114152897115136510}
   _soundVolume: {fileID: 114602799873254046}
-  _audioSource: {fileID: 0}
 --- !u!114 &114868284371423768
 MonoBehaviour:
   m_ObjectHideFlags: 1

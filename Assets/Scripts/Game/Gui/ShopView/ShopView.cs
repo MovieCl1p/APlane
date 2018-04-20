@@ -1,8 +1,10 @@
 ﻿using Core.Binder;
+using Core.ResourceManager;
 using Core.ViewManager;
 using Game.Commands;
-//using Game.Config.Ship;
+using Game.Config;
 using Game.Data;
+using Game.Gui.ShopView;
 using Game.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,9 @@ namespace Game.Gui.ShipView
             base.Start();
 
             _backBtn.onClick.AddListener(OnCloseClick);
+            //ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+
+            UpdateView();
         }
 
         private void OnCloseClick()
@@ -39,52 +44,52 @@ namespace Game.Gui.ShipView
             CloseView();
         }
 
-//        public void UpdateView(List<ShipConfig> ships )
-//        {
-//            ClearList();
-//
-//            for (int i = 0; i < ships.Count; i++)
-//            {
-//                ShipItemView item = Instantiate<ShipItemView>(_item, _list);
-//
-//                item.UpdateView(ships[i]);
-//
-//                item.OnClick += OnShipClick;
-//
-//                _items.Add(item);
-//            }
-//
-//            Vector2 newSize = _content.sizeDelta;
-//            newSize.x = ships.Count * _item.GetComponent<RectTransform>().sizeDelta.x;
-//
-//            _content.sizeDelta = newSize;
-//        }
+        public void UpdateView(List<ShopItemView> items)
+        {
+            ClearList();
 
-//        private void OnShipClick(ShipConfig config)
-//        {
-//            CloseView();
-//
-//            StartLevelCommand command = new StartLevelCommand();
-//            command.Execute();
-//        }
+            for (int i = 0; i < items.Count; i++)
+            {
+                ShopItemView item = Instantiate<ShopItemView>(_item, _list);
+
+                item.UpdateView(items[i]);
+
+                item.OnClick += OnShipClick;
+
+                _items.Add(item);
+            }
+
+            Vector2 newSize = _content.sizeDelta;
+            newSize.x = items.Count * _item.GetComponent<RectTransform>().sizeDelta.x;
+
+            _content.sizeDelta = newSize;
+        }
+
+        private void OnShipClick(GameConfig config)
+        {
+            if (PlayerPrefs.HasKey("Eagle"))
+            {
+                PlayerPrefs.GetInt("Eagle");
+            }
+        }
 
         protected override void OnDestroy()
         {
-//            for (int i = 0; i < _items.Count; i++)
-//            {
-//                _items[i].OnClick -= OnShipClick;
-//            }
+            for (int i = 0; i < _items.Count; i++)
+            {
+                _items[i].OnClick -= OnShipClick;
+            }
 
             base.OnDestroy();
         }
 
         private void ClearList()
         {
-//            for (int i = _items.Count - 1; i >= 0; i--)
-//            {
-//                _items[i].OnClick -= OnShipClick;
-//                Destroy(_items[i].gameObject);
-//            }
+            for (int i = _items.Count - 1; i >= 0; i--)
+            {
+                _items[i].OnClick -= OnShipClick;
+                Destroy(_items[i].gameObject);
+            }
         }
 
         protected override void OnReleaseResources()

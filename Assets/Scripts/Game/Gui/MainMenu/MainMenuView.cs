@@ -15,6 +15,7 @@ namespace Game.Gui.MainMenu
         [SerializeField] private Button _playBtn;
         [SerializeField] private Button _shopBtn;
         [SerializeField] private Button _optionsBtn;
+        [SerializeField] private Image _shipImage;
 
         protected override void Start()
         {
@@ -23,8 +24,9 @@ namespace Game.Gui.MainMenu
             _playBtn.onClick.AddListener(OnPLayClick);
             _optionsBtn.onClick.AddListener(OnOptionsClick);
             _shopBtn.onClick.AddListener(OnShopClick);
-
+            
             ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+
         }
 
         private void OnPLayClick()
