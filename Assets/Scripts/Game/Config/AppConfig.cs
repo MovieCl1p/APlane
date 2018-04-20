@@ -37,6 +37,7 @@ namespace Game.Config
             BindManager.Bind<IShopService>().To<ShopService>().ToSingleton();
             
             BindManager.Bind<IUserProfileService>().To<UserProfileService>().ToSingleton();
+            BindManager.Bind<IShipSpriteLoaderService>().To<ShipSpriteSpriteLoaderService>().ToSingleton();
         }
     }
 }

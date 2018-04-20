@@ -17,3 +17,10 @@ MonoBehaviour:
     type: 2}
   PlayerPrefab: {fileID: 114604984161758960, guid: 9ac05fefeee0ae54aa74d6bf32184db5,
     type: 2}
+  ShipConfigs:
+  - Texture: {fileID: 2800000, guid: 5bc7db08297cb2b49b52f17610cd7554, type: 3}
+    SpriteId: green
+  - Texture: {fileID: 2800000, guid: 37fb0c586e8714e4b9e23454f2bd32ee, type: 3}
+    SpriteId: red
+  - Texture: {fileID: 2800000, guid: d46bf661927f5624f83d3cab07a2a4e9, type: 3}
+    SpriteId: white

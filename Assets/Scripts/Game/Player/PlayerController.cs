@@ -2,6 +2,7 @@
 using Core.Binder;
 using Core.Dispatcher;
 using Game.Player.Control;
+using Game.Services.Interfaces;
 using UnityEngine;
 
 namespace Game.Player
@@ -12,8 +13,12 @@ namespace Game.Player
 
         [SerializeField]
         private float _moveVelocity = 40;
+        
+        [SerializeField]
+        private SpriteRenderer _shipSprite;
 
         private IDispatcher _dispatcher;
+        private IShipSpriteLoaderService _spriteLoader;
         private IPlayerControl _control;
         private MovementComponent _move;
 
@@ -22,8 +27,11 @@ namespace Game.Player
             base.Awake();
             
             _dispatcher = BindManager.GetInstance<IDispatcher>();
+            _spriteLoader = BindManager.GetInstance<IShipSpriteLoaderService>();
             _control = BindManager.GetInstance<IPlayerControl>();
             _control.OnTouch += OnTouch;
+
+            UpdateSprite();
         }
 
         public void SetCamera(Camera playerCamera)
@@ -53,6 +61,15 @@ namespace Game.Player
         {
             _control.OnTouch -= OnTouch;
             base.OnReleaseResources();
+        }
+
+        private void UpdateSprite()
+        {
+            IUserProfileService userProfileService = BindManager.GetInstance<IUserProfileService>();
+            string spriteId = userProfileService.GetProfileModel().CurrentSpriteId;
+            
+            Texture2D texture = _spriteLoader.GetSprite(spriteId);
+            _shipSprite.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         }
     }
 }

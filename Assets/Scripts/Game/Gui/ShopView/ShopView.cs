@@ -19,7 +19,7 @@ namespace Game.Gui.ShipView
         private ShopItemView _item;
 
         [SerializeField]
-        private Transform _list;
+        private Transform _contentTransform;
 
         [SerializeField]
         private RectTransform _content;
@@ -34,8 +34,6 @@ namespace Game.Gui.ShipView
             base.Start();
 
             _backBtn.onClick.AddListener(OnCloseClick);
-            //ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
-
             UpdateView();
         }
 
@@ -44,43 +42,34 @@ namespace Game.Gui.ShipView
             CloseView();
         }
 
-        public void UpdateView(List<ShopItemView> items)
+        public void UpdateView()
         {
             ClearList();
 
-            for (int i = 0; i < items.Count; i++)
+            GameConfig config = ResourcesCache.GetConfig<GameConfig>(ConfigData.GameConfigPath);
+            
+            for (int i = 0; i < config.ShipConfigs.Count; i++)
             {
-                ShopItemView item = Instantiate<ShopItemView>(_item, _list);
+                ShipConfig shipConfig = config.ShipConfigs[i];
+                
+                ShopItemView item = Instantiate<ShopItemView>(_item, _contentTransform);
 
-                item.UpdateView(items[i]);
-
+                item.UpdateView(shipConfig);
                 item.OnClick += OnShipClick;
 
                 _items.Add(item);
             }
-
-            Vector2 newSize = _content.sizeDelta;
-            newSize.x = items.Count * _item.GetComponent<RectTransform>().sizeDelta.x;
-
-            _content.sizeDelta = newSize;
         }
 
-        private void OnShipClick(GameConfig config)
+        private void OnShipClick(ShipConfig config)
         {
-            if (PlayerPrefs.HasKey("Eagle"))
-            {
-                PlayerPrefs.GetInt("Eagle");
-            }
-        }
+            IUserProfileService userProfileService = BindManager.GetInstance<IUserProfileService>();
+            userProfileService.UpdateUserProfileSprite(config.SpriteId);
 
-        protected override void OnDestroy()
-        {
             for (int i = 0; i < _items.Count; i++)
             {
-                _items[i].OnClick -= OnShipClick;
+                _items[i].UpdateSelectedView();
             }
-
-            base.OnDestroy();
         }
 
         private void ClearList()
@@ -90,11 +79,18 @@ namespace Game.Gui.ShipView
                 _items[i].OnClick -= OnShipClick;
                 Destroy(_items[i].gameObject);
             }
+            
+            _items.Clear();
         }
 
         protected override void OnReleaseResources()
         {
             _backBtn.onClick.RemoveListener(OnCloseClick);
+            for (int i = 0; i < _items.Count; i++)
+            {
+                _items[i].OnClick -= OnShipClick;
+            }
+            
             base.OnReleaseResources();
         }
     }

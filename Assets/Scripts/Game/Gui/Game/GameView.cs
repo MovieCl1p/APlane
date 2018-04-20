@@ -23,6 +23,8 @@ namespace Game.Gui.Game
         private IDispatcher _dispatcher;
 
         private LevelSessionModel _levelSessionModel;
+        
+        private CreateRocketCommand _createRocketCommand;
 
         protected override void Start()
         {
@@ -54,8 +56,8 @@ namespace Game.Gui.Game
             CreateAsteroidCommand asteroidCommand = new CreateAsteroidCommand(Vector3.back);
             asteroidCommand.Execute();
             
-            CreateRocketCommand rocketCommand = new CreateRocketCommand(playerCommand.Player.CachedTransform);
-            rocketCommand.Execute();
+            _createRocketCommand = new CreateRocketCommand(playerCommand.Player.CachedTransform);
+            _createRocketCommand.Execute();
             
             _camera.FollowTarget(playerCommand.Player.CachedTransform);
         }
@@ -90,7 +92,7 @@ namespace Game.Gui.Game
             _dispatcher.RemoveListener(LevelEvent.Finish, OnLevelFinish);
             _dispatcher.RemoveListener(LevelEvent.Quit, OnLevelQuit);
             
-            
+            _createRocketCommand.FinishCommand();
         }
     }
 }

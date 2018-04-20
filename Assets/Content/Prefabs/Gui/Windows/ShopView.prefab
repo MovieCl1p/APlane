@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scheduledUpdate: 0
   _item: {fileID: 114694229585342332, guid: 221a78d979e31fd41a5df852185460c5, type: 2}
-  _list: {fileID: 224947937495830240}
+  _contentTransform: {fileID: 224947937495830240}
   _content: {fileID: 224768832119494008}
   _backBtn: {fileID: 114584953113224388}
 --- !u!114 &114258318813832580
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
 --- !u!114 &114584953113224388
 MonoBehaviour:
   m_ObjectHideFlags: 1

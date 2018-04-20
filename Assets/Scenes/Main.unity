@@ -540,7 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MatchOrientationToScreen: 1
   m_LastScaleFactor: 1
-  m_LastResolution: {x: 777, y: 437}
+  m_LastResolution: {x: 1024, y: 768}
 --- !u!1 &1629946970
 GameObject:
   m_ObjectHideFlags: 0

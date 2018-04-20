@@ -1,9 +1,12 @@
-﻿using Core.Commands;
+﻿using Core.Binder;
+using Core.Commands;
 using Core.Database;
 using Core.ViewManager;
 using Core.ViewManager.Data;
 using Game.Data;
 using Game.Model.Tables;
+using Game.Services.Interfaces;
+using UnityEngine;
 
 namespace Game.Commands
 {
@@ -19,7 +22,8 @@ namespace Game.Commands
 
         private void CreateDatabase()
         {
-            
+            IUserProfileService service = BindManager.GetInstance<IUserProfileService>();
+            service.CreateProfileModel();
         }
 
         private void RegisterViews()

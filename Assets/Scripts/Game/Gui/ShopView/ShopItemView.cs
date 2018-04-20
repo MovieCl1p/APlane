@@ -2,6 +2,8 @@
 using Game.Config;
 using Game.Gui.ShopView;
 using System;
+using Core.Binder;
+using Game.Services.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +11,7 @@ namespace Game.Gui.ShipView
 {
     public class ShopItemView : BaseMonoBehaviour
     {
-        public event Action<GameConfig> OnClick;
+        public event Action<ShipConfig> OnClick;
 
         [SerializeField]
         private Text _shipName;
@@ -18,29 +20,21 @@ namespace Game.Gui.ShipView
         private Image _shipImage;
 
         [SerializeField]
-        private int _iconId;
-
-        [SerializeField]
         private Button _clickBtn;
         
-        private GameConfig _config;
-
-        private int iconId;
+        [SerializeField]
+        private GameObject _selectedImage;
         
+        private ShipConfig _config;
+
         protected override void Start()
         {
             base.Start();
 
-            _clickBtn.onClick.AddListener(OnClicked);
-
-            iconId = _iconId;
-
-            SaveShips(iconId);
-
-            LoadShip(iconId);
+            _clickBtn.onClick.AddListener(OnBtnClick);
         }
         
-        private void OnClicked()
+        private void OnBtnClick()
         {
             if (OnClick != null)
             {
@@ -48,76 +42,26 @@ namespace Game.Gui.ShipView
             }
         }
 
-        public void UpdateView(GameConfig config)
+        public void UpdateView(ShipConfig config)
         {
             _config = config;
+            _shipName.text = config.SpriteId;
+            Texture2D texture = config.Texture;
+            _shipImage.sprite =  Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-            _shipName.text = config.PlayerPrefab;
-        }
-
-        public void SaveShips(int id)
-        {
-            switch (id)
-            {
-                case 1:
-                    Resources.Load<GameObject>("Ships/Eagle");
-                    PlayerPrefs.SetInt("Eagle",1);
-                    break;
-
-                case 2:
-                    Resources.Load<GameObject>("Ships/Shuttle");
-                    PlayerPrefs.SetInt("Shuttle", 2);
-                    break;
-
-                case 3:
-                    Resources.Load<GameObject>("Ships/XFighter");
-                    PlayerPrefs.SetInt("XFighter", 3);
-                    break;
-
-                case 4:
-                    Resources.Load<GameObject>("Ships/DeltaFighter");
-                    PlayerPrefs.SetInt("DeltaFighter", 4);
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        public void LoadShip(int id)
-        {
-            switch (id)
-            {
-                case 1:
-                    PlayerPrefs.GetInt("Eagle", 1);
-                    Resources.Load<GameObject>("Ships/Eagle");
-                    break;
-
-                case 2:
-                    PlayerPrefs.GetInt("Shuttle", 2);
-                    Resources.Load<GameObject>("Ships/Shuttle");
-                    break;
-
-                case 3:
-                    PlayerPrefs.GetInt("XFighter", 3);
-                    Resources.Load<GameObject>("Ships/XFighter");
-                    break;
-
-                case 4:
-                    PlayerPrefs.GetInt("DeltaFighter", 4);
-                    Resources.Load<GameObject>("Ships/DeltaFighter");
-                    break;
-
-                default:
-                    break;
-            }
+            UpdateSelectedView();
         }
         
-        protected override void OnDestroy()
+        public void UpdateSelectedView()
         {
-            _clickBtn.onClick.RemoveListener(OnClicked);
-            
-            base.OnDestroy();
+            IUserProfileService userProfileService = BindManager.GetInstance<IUserProfileService>();
+            _selectedImage.SetActive(userProfileService.GetProfileModel().CurrentSpriteId == _config.SpriteId);
+        }
+
+        protected override void OnReleaseResources()
+        {
+            _clickBtn.onClick.RemoveListener(OnBtnClick);
+            base.OnReleaseResources();
         }
     }
 }

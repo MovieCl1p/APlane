@@ -2,18 +2,31 @@
 using UnityEngine;
 using System;
 using Core;
+using Core.Binder;
+using Core.Dispatcher;
+using Game.Components;
+using Game.Data;
 
 namespace Game.Rocket
 {
-    public class RocketController : BaseMonoBehaviour, IPoolable
+    public class RocketController : BaseMonoBehaviour, IPoolable, IDamagable
     {
         private Transform _target;
 
         [SerializeField]
-        private float _moveVelocity = 50;
+        private float _moveVelocity = 10;
 
         [SerializeField]
-        private float _rotateVelocity = 360;
+        private float _rotateVelocity = 1;
+
+        private IDispatcher _dispatcher;
+        
+        protected override void Start()
+        {
+            base.Start();
+            
+            _dispatcher = BindManager.GetInstance<IDispatcher>();
+        }
 
         private void Update()
         {
@@ -44,6 +57,18 @@ namespace Game.Rocket
         public void SetTarget(Transform target)
         {
             _target = target;
+        }
+
+        public void ApplyDamage()
+        {
+            _dispatcher.Dispatch(LevelEvent.OnRocketDestroyed);
+            Destroy(gameObject);
+        }
+
+        public void SetVelocity(float dT)
+        {
+            _moveVelocity += UnityEngine.Random.Range(dT * 0.1f, dT);
+            _rotateVelocity += UnityEngine.Random.Range((dT / 2) * 0.1f, (dT / 2));
         }
     }
 }

@@ -12,14 +12,36 @@ namespace Game.Services
     {
         private UserProfileModel _userProfileModel;
 
+        public void CreateProfileModel()
+        {
+            _userProfileModel = new UserProfileModel();
+            if (!PlayerPrefs.HasKey("PlayerSprite"))
+            {
+                PlayerPrefs.SetString("PlayerSprite", "green");
+            }
+            
+            string spriteId = PlayerPrefs.GetString("PlayerSprite");
+            _userProfileModel.CurrentSpriteId = spriteId;
+        }
+        
         public void UpdateUserProgress(int bestScore)
         {
 
         }
 
+        public UserProfileModel GetProfileModel()
+        {
+            return _userProfileModel;
+        }
+        
+        public void UpdateUserProfileSprite(string spriteId)
+        {
+            _userProfileModel.CurrentSpriteId = spriteId;
+            PlayerPrefs.SetString("PlayerSprite", spriteId);
+        }
+
         private void OnFail()
         {
-            Debug.Log("Fail");
         }
     }
 }

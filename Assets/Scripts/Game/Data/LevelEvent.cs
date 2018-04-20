@@ -5,6 +5,7 @@
         Restart,
         Finish,
         Quit,
-        Start
+        Start,
+        OnRocketDestroyed
     }
 }
