@@ -9,5 +9,7 @@ namespace Game.Config
         public Texture2D Texture;
 
         public string SpriteId;
+
+        public int ShipHealth = 100;
     }
 }

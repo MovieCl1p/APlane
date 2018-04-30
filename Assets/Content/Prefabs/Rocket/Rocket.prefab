@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4834258663782832}
-  - component: {fileID: 114971930925467036}
   - component: {fileID: 54472031131085618}
   - component: {fileID: 135462562826434836}
+  - component: {fileID: 114971930925467036}
   - component: {fileID: 114569939968616810}
   m_Layer: 0
   m_Name: Rocket
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a3d332a766c7e438b080dcd553d32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveVelocity: 10
+  _moveVelocity: 5
   _rotateVelocity: 1
 --- !u!135 &135462562826434836
 SphereCollider:
@@ -122,8 +122,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.32
+  m_Center: {x: 0.38, y: 0, z: 0}
 --- !u!212 &212534622170739608
 SpriteRenderer:
   m_ObjectHideFlags: 1

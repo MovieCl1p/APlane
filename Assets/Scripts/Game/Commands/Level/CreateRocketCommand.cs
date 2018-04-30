@@ -61,6 +61,7 @@ namespace Game.Commands.Level
             for (int i = 0; i < _currentCreated; i++)
             {
                 RocketController rocket = factory.CreateRocket();
+                
                 Vector3 dir = (Random.insideUnitSphere * 100);
                 dir.z = 0;
                 rocket.CachedTransform.position = _player.position + dir;

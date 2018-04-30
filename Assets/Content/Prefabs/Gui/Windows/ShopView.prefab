@@ -195,8 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scheduledUpdate: 0
   _item: {fileID: 114694229585342332, guid: 221a78d979e31fd41a5df852185460c5, type: 2}
-  _contentTransform: {fileID: 224947937495830240}
-  _content: {fileID: 224768832119494008}
+  _contentTransform: {fileID: 224768832119494008}
   _backBtn: {fileID: 114584953113224388}
 --- !u!114 &114258318813832580
 MonoBehaviour:

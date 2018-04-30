@@ -1,14 +1,22 @@
 ﻿using Core;
 using Core.Binder;
 using Core.Dispatcher;
+using Game.Components;
+using Game.Config;
+using Game.Data;
+using Game.Model;
 using Game.Player.Control;
 using Game.Services.Interfaces;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Player
 {
-    public class PlayerController : MonoScheduledBehaviour
+    public class PlayerController : MonoScheduledBehaviour , IDamagable
     {
+        public event Action<ShipConfig> OnDead;
+
         private Camera _camera;
 
         [SerializeField]
@@ -17,11 +25,16 @@ namespace Game.Player
         [SerializeField]
         private SpriteRenderer _shipSprite;
 
+        private ShipConfig _config;
+
+        private MovementComponent _move;
+
+        private LevelSessionModel _model;
+
         private IDispatcher _dispatcher;
         private IShipSpriteLoaderService _spriteLoader;
         private IPlayerControl _control;
-        private MovementComponent _move;
-
+        
         protected override void Awake()
         {
             base.Awake();
@@ -42,11 +55,12 @@ namespace Game.Player
         protected override void Update()
         {
             base.Update();
-
+            
             if (_move != null)
             {
                 _move.MovePlayer(_moveVelocity, Time.deltaTime);
             }
+            
         }
 
         private void OnTouch(Vector2 mousePosition)
@@ -70,6 +84,21 @@ namespace Game.Player
             
             Texture2D texture = _spriteLoader.GetSprite(spriteId);
             _shipSprite.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        }
+        
+        public void ApplyDamage()
+        {
+
+            if (OnDead != null)
+            {
+                OnDead(_config);
+            }
+            
+            _dispatcher.Dispatch(LevelEvent.OnPlayerDestroyed);
+            //_dispatcher.Dispatch(LevelEvent.Finish);
+            
+
+            Destroy(gameObject);
         }
     }
 }

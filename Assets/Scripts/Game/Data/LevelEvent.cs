@@ -6,6 +6,8 @@
         Finish,
         Quit,
         Start,
-        OnRocketDestroyed
+        OnRocketDestroyed,
+        OnPlayerDestroyed,
+        
     }
 }

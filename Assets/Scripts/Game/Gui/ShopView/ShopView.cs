@@ -21,8 +21,8 @@ namespace Game.Gui.ShipView
         [SerializeField]
         private Transform _contentTransform;
 
-        [SerializeField]
-        private RectTransform _content;
+        //[SerializeField]
+        //private RectTransform _content;
 
         private List<ShopItemView> _items = new List<ShopItemView>();
 

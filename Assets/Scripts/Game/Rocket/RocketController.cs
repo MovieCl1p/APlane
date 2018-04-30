@@ -6,6 +6,7 @@ using Core.Binder;
 using Core.Dispatcher;
 using Game.Components;
 using Game.Data;
+using Game.Config;
 
 namespace Game.Rocket
 {
@@ -14,10 +15,15 @@ namespace Game.Rocket
         private Transform _target;
 
         [SerializeField]
-        private float _moveVelocity = 10;
+        private float _moveVelocity = 5;
 
         [SerializeField]
         private float _rotateVelocity = 1;
+
+        [SerializeField]
+        private int _rocketDamage = 50;
+
+        private ShipConfig _config;
 
         private IDispatcher _dispatcher;
         
@@ -61,6 +67,8 @@ namespace Game.Rocket
 
         public void ApplyDamage()
         {
+            //_rocketDamage -= _config.ShipHealth;
+
             _dispatcher.Dispatch(LevelEvent.OnRocketDestroyed);
             Destroy(gameObject);
         }
